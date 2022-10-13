@@ -35,7 +35,11 @@ class Mahasiswa extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $data = [
+            'messages'        => 'success',
+            'detil_maasiswa'  => $this->mahasiswaModel->find($id)
+        ];
+        return $this->respond($data, 200);
     }
 
     /**

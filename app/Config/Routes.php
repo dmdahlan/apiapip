@@ -42,7 +42,10 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->post('register', [AuthController::class, 'create']);
 $routes->post('login', [AuthController::class, 'login']);
-$routes->resource('mahasiswa', [Mahasiswa::class, 'filter' => 'auth']);
+
+$routes->get('mahasiswa', 'Mahasiswa::index', ['filter' => 'auth']);
+$routes->get('mahasiswa/(:num)', 'Mahasiswa::show/$1', ['filter' => 'auth']);
+$routes->post('mahasiswa', 'Mahasiswa::create', ['filter' => 'auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
