@@ -28,7 +28,7 @@ class AuthController extends ResourceController
             'username'      => $this->request->getPost('username'),
             'nis'           => $this->request->getPost('nis'),
             'level'         => $this->request->getPost('level'),
-            'password_hash' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+            'password_hash' => password_hash($this->request->getPost('pass_confirm'), PASSWORD_BCRYPT),
         ];
         if (!$this->validasi()) return $this->fail($this->validator->getErrors());
         $this->authModel->insert($data);

@@ -94,7 +94,7 @@ class ProfileController extends ResourceController
             return $this->fail('Password lama salah');
         }
         $data = [
-            'password_hash'     => $this->request->getPost('pass_confirm'),
+            'password_hash'     => password_hash($this->request->getPost('pass_confirm'), PASSWORD_BCRYPT),
         ];
         $this->authModel->update($id, $data);
         $response = [
