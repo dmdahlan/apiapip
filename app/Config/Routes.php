@@ -5,6 +5,7 @@ namespace Config;
 use App\Controllers\AuthController;
 use App\Controllers\Mahasiswa;
 use App\Controllers\Me;
+use App\Controllers\Tess;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -43,9 +44,15 @@ $routes->get('/', 'Home::index');
 $routes->post('register', [AuthController::class, 'create']);
 $routes->post('login', [AuthController::class, 'login']);
 
-$routes->get('mahasiswa', 'Mahasiswa::index', ['filter' => 'auth']);
-$routes->get('mahasiswa/(:num)', 'Mahasiswa::show/$1', ['filter' => 'auth']);
-$routes->post('mahasiswa', 'Mahasiswa::create', ['filter' => 'auth']);
+$routes->get('nilai', 'NilaiController::index', ['filter' => 'auth']);
+$routes->get('nilai/(:num)', 'NilaiController::show/$1', ['filter' => 'auth']);
+$routes->post('nilai', 'NilaiController::create', ['filter' => 'auth']);
+$routes->post('nilai/(:num)', 'NilaiController::update/$1', ['filter' => 'auth']);
+$routes->patch('nilai/(:num)', 'NilaiController::update/$1', ['filter' => 'auth']);
+$routes->delete('nilai/(:num)', 'NilaiController::delete/$1', ['filter' => 'auth']);
+
+$routes->get('profile', 'ProfileController::index');
+$routes->post('profile', 'ProfileController::update', ['filter' => 'auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

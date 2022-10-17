@@ -10,9 +10,13 @@ class Migrateusers extends Migration
     {
         $this->forge->addField([
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'email'            => ['type' => 'varchar', 'constraint' => 255],
-            'username'         => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
+            'email'            => ['type' => 'varchar', 'constraint' => 100, 'unique' => true],
+            'username'         => ['type' => 'varchar', 'constraint' => 30, 'unique' => true],
+            'nis'              => ['type' => 'varchar', 'constraint' => 30, 'unique' => true],
+            'level'            => ['type' => 'varchar', 'constraint' => 30],
             'password_hash'    => ['type' => 'varchar', 'constraint' => 255],
+            'foto'             => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'active'           => ['type' => 'tinyint', 'constraint' => 1, 'null' => 0, 'default' => 0],
             // 'reset_hash'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             // 'reset_at'         => ['type' => 'datetime', 'null' => true],
             // 'reset_expires'    => ['type' => 'datetime', 'null' => true],

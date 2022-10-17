@@ -10,5 +10,5 @@ class AuthModel extends Model
     protected $primaryKey       = 'id';
     protected $useSoftDeletes   = true;
     protected $useTimestamps    = true;
-    protected $allowedFields    = ['email', 'username', 'password_hash'];
+    protected $allowedFields    = ['email', 'username', 'nis', 'level', 'password_hash'];
 }

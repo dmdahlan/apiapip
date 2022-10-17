@@ -5,10 +5,8 @@ namespace App\Filters;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
-class Auth implements FilterInterface
+class Cors implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -27,31 +25,12 @@ class Auth implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        $key = getenv('TOKEN_SECRET');
-        $header = $request->getServer('HTTP_AUTHORIZATION');
-        if (!$header) {
-            $response = service('response');
-            $response->setJSON([
-                'status' => false,
-                'message' => 'Weeeh login dulu'
-            ]);
-            return $response->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
-        }
-        try {
-            $token = explode(' ', $header)[1];
-            $decoded = JWT::decode($token, new Key($key, 'HS256'));
-            // $response = [
-            //     'id'    => $decoded->id,
-            //     'email' => $decoded->email,
-            // ];
-            // return $response($response);
-        } catch (\Exception $e) {
-            $response = service('response');
-            $response->setJSON([
-                'status' => false,
-                'message' => 'Token invalid' . $e->getMessage(),
-            ]);
-            return $response->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
+        header('Access-Control-Allow-Origin:*');
+        header('Access-Control-Allow-Headers: X-API-KEY, Origin,X-Requested-With, Content-Type,Accept,Access-Control-Requested-Method,Authorization');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS,PATCH ,PUT , DELETE');
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == 'OPTIONS') {
+            die();
         }
     }
 
