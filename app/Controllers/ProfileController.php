@@ -96,7 +96,7 @@ class ProfileController extends ResourceController
         $data = [
             'password_hash'     => password_hash($this->request->getPost('pass_confirm'), PASSWORD_BCRYPT),
         ];
-        $this->authModel->update($id, $data);
+        $this->authModel->update($this->user(), $data);
         $response = [
             'messages'  => [
                 'success'   => 'Password berhasil diubah'

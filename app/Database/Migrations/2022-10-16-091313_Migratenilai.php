@@ -25,13 +25,13 @@ class Migratenilai extends Migration
         $this->forge->addForeignKey('created_id', 'users', 'id', '', '');
         $this->forge->addForeignKey('updated_id', 'users', 'id', '', '');
         $this->forge->addForeignKey('deleted_id', 'users', 'id', '', '');
-        $this->forge->createTable('nilai_pelajaran');
+        $this->forge->createTable('nilai');
     }
     public function down()
     {
-        $this->forge->dropForeignKey('nilai_pelajaran', 'nilai_pelajaran_created_id_foreign');
-        $this->forge->dropForeignKey('nilai_pelajaran', 'nilai_pelajaran_updated_id_foreign');
-        $this->forge->dropForeignKey('nilai_pelajaran', 'nilai_pelajaran_deleted_id_foreign');
-        $this->forge->dropTable('nilai_pelajaran');
+        $this->forge->dropForeignKey('nilai', 'nilai_created_id_foreign');
+        $this->forge->dropForeignKey('nilai', 'nilai_updated_id_foreign');
+        $this->forge->dropForeignKey('nilai', 'nilai_deleted_id_foreign');
+        $this->forge->dropTable('nilai');
     }
 }

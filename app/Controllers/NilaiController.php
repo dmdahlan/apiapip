@@ -27,7 +27,7 @@ class NilaiController extends ResourceController
         $user = $this->user();
         $data = [
             'messages'        => 'success',
-            'data_nilai'      => $this->nilaiModel->getNilai($id, $user)->getResult()
+            'data'            => $this->nilaiModel->getNilai($id, $user)->getResult()
         ];
         return $this->respond($data, 200);
     }
@@ -44,7 +44,7 @@ class NilaiController extends ResourceController
         if ($data) {
             $response = [
                 'messages'          => 'success',
-                'detil_nilai'       => $data
+                'data'              => $data
             ];
             return $this->respond($response, 200);
         } else {
